@@ -98,26 +98,50 @@ V_model_I_Quadratic=zeros(1,n+1);
 
 
 % Newton Quadratic Interpolation %
-for k = 1:n-1
-   b0_S=S(k);
-   b1_S=((S(k+1)-S(k))/((k+2)-k));
-   b11_S=((S(k+2)-S(k+1))/((k+4)-(k+2)));
-   b2_S=(b11_S-b1_S)/(k+4-k);
-   V_int_S_Quadratic(k)=b0_S+b1_S*(k+1-k)+b2_S*(k+1-k)*(k+1-k+2);
-   V_model_S_Quadratic(k)=S_1(2*k-1);
-   b0_I=I(k);
-   b1_I=((I(k+1)-I(k))/((k+2)-k));
-   b11_I=((I(k+2)-I(k+1))/((k+4)-(k+2)));
-   b2_I=(b11_I-b1_I)/(k+4-k);
-   V_int_I_Quadratic(k)=b0_I+b1_I*(k+1-k)+b2_I*(k+1-k)*(k+1-k+2);
-   V_model_I_Quadratic(k)=I_1(2*k-1);
-   b0_R=R(k);
-   b1_R=((R(k+1)-R(k))/((k+2)-k));
-   b11_R=((R(k+2)-R(k+1))/((k+4)-(k+2)));
-   b2_R=(b11_R-b1_R)/(k+4-k);
-   V_int_R_Quadratic(k)=b0_R+b1_R*(k+1-k)+b2_R*(k+1-k)*(k+1-k+2);
-   V_model_R_Quadratic(k)=R_1(2*k-1);
+for k = 1:n
+   
+   if(k <= n-1)
+
+        b0_S=S(k);
+        b1_S=((S(k+1)-S(k))/((k+2)-k));
+        b11_S=((S(k+2)-S(k+1))/((k+4)-(k+2)));
+        b2_S=(b11_S-b1_S)/(k+4-k);
+        V_int_S_Quadratic(k)=b0_S+b1_S*(k+1-k)+b2_S*(k+1-k)*(k+1-k+2);
+        b0_I=I(k);
+        b1_I=((I(k+1)-I(k))/((k+2)-k));
+        b11_I=((I(k+2)-I(k+1))/((k+4)-(k+2)));
+        b2_I=(b11_I-b1_I)/(k+4-k);
+        V_int_I_Quadratic(k)=b0_I+b1_I*(k+1-k)+b2_I*(k+1-k)*(k+1-k+2);
+        b0_R=R(k);
+        b1_R=((R(k+1)-R(k))/((k+2)-k));
+        b11_R=((R(k+2)-R(k+1))/((k+4)-(k+2)));
+        b2_R=(b11_R-b1_R)/(k+4-k);
+        V_int_R_Quadratic(k)=b0_R+b1_R*(k+1-k)+b2_R*(k+1-k)*(k+1-k+2);
+
+   elseif(k > n-1)
+       
+        b0_S=S(k-2);
+        b1_S=((S(k-1)-S(k-2))/((k-2)-k-4));
+        b11_S=((S(k)-S(k-1))/((k)-(k-2)));
+        b2_S=(b11_S-b1_S)/(k-k-4);
+        V_int_S_Quadratic(k)=b0_S+b1_S*(k-1-k-2)+b2_S*(k-1-k-2)*(k-1-k);
+        b0_I=I(k-2);
+        b1_I=((I(k-1)-I(k-2))/((k-2)-k-4));
+        b11_I=((I(k)-I(k-1))/((k)-(k-2)));
+        b2_I=(b11_I-b1_I)/(k-k-4);
+        V_int_I_Quadratic(k)=b0_I+b1_I*(k-1-k-2)+b2_I*(k-1-k-2)*(k-1-k);
+        b0_R=R(k-2);
+        b1_R=((R(k-1)-R(k-2))/((k-2)-k-4));
+        b11_R=((R(k)-R(k-1))/((k)-(k-2)));
+        b2_R=(b11_R-b1_R)/(k-k-4);
+        V_int_R_Quadratic(k)=b0_R+b1_R*(k-1-k-2)+b2_R*(k-1-k-2)*(k-1-k);
+     
+
+   end
+
 end
+
+
 
 %Error Norm El2 for I(t), R(t), S(t)%
 N_tot = n;
