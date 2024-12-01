@@ -73,28 +73,25 @@ for i = 1:2*n
 end
 
 V_int_S_Linear=zeros(1,n+1); %vector for interpolated values
-V_model_S_Linear=zeros(1,n+1); %vector for mode values;
+V_model_S=zeros(1,n+1); %vector for mode values;
 V_int_R_Linear=zeros(1,n+1);
-V_model_R_Linear=zeros(1,n+1);
+V_model_R=zeros(1,n+1);
 V_int_I_Linear=zeros(1,n+1);
-V_model_I_Linear=zeros(1,n+1);
+V_model_I=zeros(1,n+1);
 
 % Newton's linear interpolation Method %
 for k = 1:n
     V_int_S_Linear(k)=S(k)+((S(k+1)-S(k))/((k+2)-k))*((k+1)-k);
-    V_model_S_Linear(k)=S_1(2*k-1);
+    V_model_S(k)=S_1(2*k-1);
     V_int_R_Linear(k)=R(k)+((R(k+1)-R(k))/((k+2)-k))*((k+1)-k);
-    V_model_R_Linear(k)=R_1(2*k-1);
+    V_model_R(k)=R_1(2*k-1);
     V_int_I_Linear(k)=I(k)+((I(k+1)-I(k))/((k+2)-k))*((k+1)-k);
-    V_model_I_Linear(k)=I_1(2*k-1);
+    V_model_I(k)=I_1(2*k-1);
 end
 
 V_int_S_Quadratic=zeros(1,n+1); %vector for interpolated values
-V_model_S_Quadratic=zeros(1,n+1); %vector for mode values;
 V_int_R_Quadratic=zeros(1,n+1);
-V_model_R_Quadratic=zeros(1,n+1);
 V_int_I_Quadratic=zeros(1,n+1);
-V_model_I_Quadratic=zeros(1,n+1);
 
 
 % Newton Quadratic Interpolation %
@@ -139,24 +136,30 @@ for k = 1:n
 
    end
 
+   
+  
+
+
+
+
 end
-
-
 
 %Error Norm El2 for I(t), R(t), S(t)%
 N_tot = n;
-Idiff_Linear = V_int_I_Linear-V_model_I_Linear;
-Rdiff_Linear = V_int_R_Linear-V_model_R_Linear;
-Sdiff_Linear = V_int_S_Linear-V_model_S_Linear;
+Idiff_Linear = V_int_I_Linear-V_model_I;
+Rdiff_Linear = V_int_R_Linear-V_model_R;
+Sdiff_Linear = V_int_S_Linear-V_model_S;
 EL2_I_Linear = sqrt((sum((Idiff_Linear).^2))/(N_tot+1));
 EL2_R_Linear = sqrt((sum((Rdiff_Linear).^2))/(N_tot+1));
 EL2_S_Linear = sqrt((sum((Sdiff_Linear).^2))/(N_tot+1));
-Idiff_Quadratic = V_int_I_Quadratic-V_model_I_Quadratic;
-Rdiff_Quadratic = V_int_R_Quadratic-V_model_R_Quadratic;
-Sdiff_Quadratic = V_int_S_Quadratic-V_model_S_Quadratic;
+Idiff_Quadratic = V_int_I_Quadratic-V_model_I;
+Rdiff_Quadratic = V_int_R_Quadratic-V_model_R;
+Sdiff_Quadratic = V_int_S_Quadratic-V_model_S;
 EL2_I_Quadratic = sqrt((sum((Idiff_Quadratic).^2))/(N_tot+1));
 EL2_R_Quadratic = sqrt((sum((Rdiff_Quadratic).^2))/(N_tot+1));
 EL2_S_Quadratic = sqrt((sum((Sdiff_Quadratic).^2))/(N_tot+1));
+
+
 
 
 
