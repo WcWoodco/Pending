@@ -149,15 +149,15 @@ N_tot = n;
 Idiff_Linear = V_int_I_Linear-V_model_I;
 Rdiff_Linear = V_int_R_Linear-V_model_R;
 Sdiff_Linear = V_int_S_Linear-V_model_S;
-EL2_I_Linear = sqrt((sum((Idiff_Linear).^2))/(N_tot+1));
-EL2_R_Linear = sqrt((sum((Rdiff_Linear).^2))/(N_tot+1));
-EL2_S_Linear = sqrt((sum((Sdiff_Linear).^2))/(N_tot+1));
+EL2_I_Linear = sqrt((sum((Idiff_Linear).^2))/(N_tot));
+EL2_R_Linear = sqrt((sum((Rdiff_Linear).^2))/(N_tot));
+EL2_S_Linear = sqrt((sum((Sdiff_Linear).^2))/(N_tot));
 Idiff_Quadratic = V_int_I_Quadratic-V_model_I;
 Rdiff_Quadratic = V_int_R_Quadratic-V_model_R;
 Sdiff_Quadratic = V_int_S_Quadratic-V_model_S;
-EL2_I_Quadratic = sqrt((sum((Idiff_Quadratic).^2))/(N_tot+1));
-EL2_R_Quadratic = sqrt((sum((Rdiff_Quadratic).^2))/(N_tot+1));
-EL2_S_Quadratic = sqrt((sum((Sdiff_Quadratic).^2))/(N_tot+1));
+EL2_I_Quadratic = sqrt((sum((Idiff_Quadratic).^2))/(N_tot));
+EL2_R_Quadratic = sqrt((sum((Rdiff_Quadratic).^2))/(N_tot));
+EL2_S_Quadratic = sqrt((sum((Sdiff_Quadratic).^2))/(N_tot));
 
 
 
